@@ -1,0 +1,13 @@
+<div class="modal-content">
+	<a class="pull-right btn-close" ng-click="$close()"><i class="fa fa-times"></i> Close</a>
+	<div class="well">
+		<p>Do you really want to delete this calculator forever? You can always set this calculator as unputlished and nobody will see it but you.</p>
+		<h3>There is no way to get it back!</h3>
+		<a ng-click="$close()" class="btn btn-success">
+		    <i class="fa fa-ambulance"></i> Do NOT delete
+		</a>
+		<a ng-controller="CalcDetailCtrl" ng-click="deleteCalc();$close();" class="btn btn-danger">
+		    <i class="fa fa-times"></i> Delete it anyway!
+		</a>
+	</div>
+</div>

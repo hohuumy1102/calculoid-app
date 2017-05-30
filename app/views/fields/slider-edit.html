@@ -1,0 +1,53 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Slider settings</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputMinValue">Min Value</label>
+                    <input type="number" ng-model="activeField.params.valueMin" class="form-control" id="inputMinValue" placeholder="Min Value"/>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputMaxValue">Max Value</label>
+                    <input type="number" ng-model="activeField.params.valueMax" class="form-control" id="inputMaxValue" placeholder="Max Value"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputStep">Step</label>
+                    <input type="number" ng-model="activeField.params.step" class="form-control" id="inputStep" placeholder="1"/>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputValue">Default Value</label>
+                    <input type="text" ng-model="activeField.value" class="form-control" id="inputValue" placeholder="Default Value"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group" tooltip="Add comma separated values to describe the scale. Look to the documentation for more info.">
+                    <label for="inputScale">Scale</label>
+                    <input type="text" ng-model="activeField.params.scale" class="form-control" id="inputScale" placeholder="20,40,60,80"/>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+    </uib-tab>
+</uib-tabset>

@@ -1,0 +1,29 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Checkbox Field Config</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputValueChecked">Value if checked</label>
+                    <input type="number" ng-change="safeApply()" ng-model="activeField.params.valueChecked" class="form-control" id="inputValueChecked" uib-tooltip-placement="bottom" uib-tooltip="Insert the numeric value of this field when the checkbox is checked."/>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputValueUnchecked">Value if unchecked</label>
+                    <input type="number" ng-model="activeField.params.valueUnchecked" class="form-control" id="inputValueUnchecked" placeholder="0" uib-tooltip-placement="bottom" uib-tooltip="Insert the numeric value of this field when the checkbox is NOT checked."/>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+    </uib-tab>
+</uib-tabset>

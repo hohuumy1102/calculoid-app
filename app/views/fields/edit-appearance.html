@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputLabelSize-{{activeField.id}}">Field Name Font Size</label>
+        <div class="input-group">
+            <input type="number" ng-model="activeField.labelSize" class="form-control" id="inputLabelSize-{{activeField.id}}" placeholder="100"/>
+            <span class="input-group-addon">px</span>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputFontSize-{{activeField.id}}">Font Size</label>
+        <div class="input-group">
+            <input type="number" ng-model="activeField.fontSize" class="form-control" id="inputFontSize-{{activeField.id}}" placeholder="100"/>
+            <span class="input-group-addon">px</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputBgColor-{{activeField.id}}">Background Color</label>
+        <input colorpicker colorpicker-fixed-position="true" colorpicker-position="top" colorpicker-close-on-select type="text" ng-model="activeField.backgroundColor" class="form-control" id="inputBgColor-{{activeField.id}}" placeholder="#FFFFFF"/>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputFontColor-{{activeField.id}}">Font Color</label>
+        <input colorpicker colorpicker-fixed-position="true" colorpicker-position="top" colorpicker-close-on-select type="text" ng-model="activeField.fontColor" class="form-control" id="inputFontColor-{{activeField.id}}" placeholder="#000000"/>
+    </div>
+</div>

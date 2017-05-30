@@ -1,0 +1,64 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Options</tab-heading>
+
+        <div class="form-group">
+			<div type="button" class="btn btn-default createOption" ng-click="createOption(activeField)">
+		        <i class="fa fa-plus-circle"></i> New Option
+		    </div>
+        </div>
+
+
+        <ul class="list-unstyled row">
+			<li ng-repeat="option in activeField.options" class="panel panel-default">
+				<div class="panel-body option-edit">
+					<div class="row">
+						<div class="col-lg-6 col-md-12 col-sm-12">
+							<div class="form-group">
+								<label for="optionName_{{option.id}}">Option Name</label>
+								<input type="text" ng-model="option.name" class="form-control" id="optionName_{{option.id}}" placeholder="Option Name">
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-12 col-sm-12">
+							<div class="form-group">
+								<label for="optionValue_{{option.id}}">Option Value</label>
+								<input type="text" ng-model="option.value" class="form-control" id="optionValue_{{option.id}}" placeholder="Option Value">
+							</div>
+						</div>
+                        <button type="button" class="btn btn-link btn-danger deleteOption" ng-click="deleteOption(activeField, option)">
+                            <i class="fa fa-times" uib-tooltip="Remove this option"></i>
+                        </button>
+					</div>
+				</div>
+			</li>
+		</ul>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Radio Field Config</tab-heading>
+        <div class="row">
+			<div class="col-lg-6 col-md-12 col-sm-12">
+		        <div class="form-group">
+					<label for="inputValue">Default Value</label>
+					<input type="text" ng-model="activeField.value" class="form-control" id="inputValue" placeholder="Default Value"/>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12 col-sm-12">
+				<div class="form-group">
+					<label for="inputColumns-{{activeField.id}}">Columns</label>
+					<input type="number" ng-model="activeField.params.columns" class="form-control" id="inputColumns-{{activeField.id}}" placeholder="1">
+				</div>
+			</div>
+		</div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+    </uib-tab>
+</uib-tabset>

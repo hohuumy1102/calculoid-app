@@ -1,0 +1,245 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Payment details</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="inputEmails">Send info about order to</label>
+					<input type="text" ng-model="activeField.params.sendTo" class="form-control" id="inputEmails" placeholder="E-mail addresses" uib-tooltip-placement="right" uib-tooltip="Separate e-mail addresses by comma">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <label for="paymentCurrency">Currency</label>
+				<select ng-model="activeField.params.currency" class="form-control">
+					<option ng-repeat="c in currencies" value="{{c.value}}" ng-selected="activeField.params.currency === c.value">
+						{{c.label}}
+					</option>
+				</select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="paymentCurrency">Price field</label>
+					<select ng-model="activeField.params.priceField" uib-tooltip="Select which field holds the total price which should be paid." class="form-control">
+						<option ng-repeat="f in calc.fields" value="{{f.id}}" ng-selected="activeField.params.priceField === f.id">
+							{{f.name}}
+						</option>
+					</select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputEmailSubject">Redirect</label>
+    				<input type="text" ng-model="activeField.params.redirect" class="form-control" id="inputRedirect" placeholder="http://" uib-tooltip-placement="top" uib-tooltip="If you insert URL address here, user will be redirected to said URL after successfull payment.">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputEmailSubject">Email Subject</label>
+                    <input type="text" ng-model="activeField.params.subject" class="form-control" id="inputEmailSubject" placeholder="Order details" uib-tooltip="Subject of the email">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-126">
+                <div class="form-group">
+                    <label for="inputEmailFrom">Email Send from</label>
+                    <input type="text" ng-model="activeField.params.sendFrom" class="form-control" id="inputEmailFrom" placeholder="From e-mail addresses" uib-tooltip="From this email address the email will be sent.">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputFromName">Sender name</label>
+                    <input type="text" ng-model="activeField.params.fromName" class="form-control" id="inputFromName" uib-tooltip="You can specify sender name. Email client should display this name instead of just email address.">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <label for="defaultPaymentGate">Default payment gate</label>
+                <select ng-model="activeField.params.paymentGate" id="defaultPaymentGate" class="calculoid-payment-gate form-control">
+                    <option value="paypal" ng-selected="activeField.params.paymentGate === 'paypal' || !activeField.params.paymentGate">PayPal</option>
+        			<option value="stripe" ng-selected="activeField.params.paymentGate === 'stripe'">Stripe</option>
+        		</select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>Send email</label>
+                    <div>
+                        <div class="btn-group" uib-tooltip="In some cases you don't want to send confirmation email by calculoid, but with some other tool like a marketing automation. You can switch the email sending here.">
+                            <button type="button" class="btn btn-default" ng-model="activeField.params.sendEmail" uib-btn-radio="1" ng-class="{active: activeField.params.sendEmail != 0}">Yes</button>
+                            <button type="button" class="btn btn-default" ng-model="activeField.params.sendEmail" uib-btn-radio="0" ng-class="{active: activeField.params.sendEmail == 0}">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>PayPal details</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <label for="paypalEnabled">PayPal payment method is</label>
+                <select ng-model="activeField.params.paypalEnabled" id="paypalEnabled" uib-tooltip="Let your customers pay with PayPal or hide PayPal option" class="form-control">
+                    <option value="1" ng-selected="activeField.params.paypalEnabled == 1">Enabled</option>
+                    <option value="0" ng-selected="activeField.params.paypalEnabled == 0">Disabled</option>
+                </select>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <label for="paypalEmail">PayPal Production Email</label>
+                <input type="text" ng-model="activeField.params.paypalEmail" class="form-control" id="paypalEmail" uib-tooltip="Enter email address of your PayPal account.">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="paypalGate">Payment Gate</label>
+					<select ng-model="activeField.params.paypalGate" uib-tooltip="Production Payment gate redirects a customer to real PayPal payment gate. Sandbox Payment Gate redirects a customer to testing payment gate. You can try transactions without pay with real money. Use sandbox for testing only." class="form-control">
+						<option ng-repeat="pg in paypalGates" value="{{pg.value}}" ng-selected="activeField.params.paypalGate === pg.value">
+							{{pg.label}}
+						</option>
+					</select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <label for="paypalSandobxEmail">PayPal Sandbox Email</label>
+				<input type="text" ng-model="activeField.params.paypalSandobxEmail" class="form-control" id="paypalSandobxEmail" uib-tooltip="Enter email address of your sandbox testing account. This is not mandatory if you don't want to test the payment.">
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Stripe details</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="form-group">
+                    <label for="stripeEnabled">Stripe payment method is</label>
+                    <select ng-model="activeField.params.stripeEnabled" id="stripeEnabled" uib-tooltip="Let your customers pay with PayPal or hide PayPal option" class="form-control">
+                        <option value="1" ng-selected="activeField.params.stripeEnabled == 1">Enabled</option>
+                        <option value="0" ng-selected="activeField.params.stripeEnabled == 0">Disabled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="paypalGate">Payment Gate</label>
+					<select ng-model="activeField.params.stripeGate" uib-tooltip="Production Payment gate takes real payment cards. Sandbox Payment Gate takes testing payment cards. You can try transactions without pay with real money. Use sandbox for testing only." class="form-control">
+						<option value="sandbox" ng-selected="activeField.params.stripeGate === 'sandbox' || !activeField.params.stripeGate">
+							Sandbox
+						</option>
+                        <option value="production" ng-selected="activeField.params.stripeGate === 'production'">
+							Production
+						</option>
+					</select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="stripeSecretKey">Stripe Secret Production Key</label>
+					<input type="text" ng-model="activeField.params.stripeSecretKeyProduction" class="form-control" id="stripeSecretKey" uib-tooltip="Enter secret Stripe key for production. The key is not loaded back from database to increase security." placeholder="Leave empty for no change">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="stripeSecretKeySandbox">Stripe Secret Sandbox Key</label>
+					<input type="text" ng-model="activeField.params.stripeSecretKeySandbox" class="form-control" id="stripeSecretKeySandbox" uib-tooltip="Enter secret Stripe key for sandbox (testing with test payment cards). The key is not loaded back from database to increase security." placeholder="Leave empty for no change">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="stripeKey">Stripe Publishable Production Key</label>
+					<input type="text" ng-model="activeField.params.stripeKeyProduction" class="form-control" id="stripeKey" uib-tooltip="Enter publishable Stripe key for production.">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="stripeKeySandbox">Stripe Publishable Sandbox Key</label>
+					<input type="text" ng-model="activeField.params.stripeKeySandbox" class="form-control" id="stripeKeySandbox" uib-tooltip="Enter publishable Stripe key for sandbox (testing with test payment cards).">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="stripeName">Shop Name</label>
+					<input type="text" ng-model="activeField.params.stripeName" class="form-control" id="stripeName" uib-tooltip="Enter name to show in the Stripe popup form.">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="stripeDescription">Shop Description</label>
+					<input type="text" ng-model="activeField.params.stripeDescription" class="form-control" id="stripeDescription" uib-tooltip="Enter description to show in the Stripe popup form.">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="stripeImage">Shop Image</label>
+					<input type="text" ng-model="activeField.params.stripeImage" class="form-control" id="stripeImage" uib-tooltip="Enter URL of the image to show in the Stripe popup form.">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Email template</tab-heading>
+        <div class="row">
+            <div class="col-md-12">
+                <p>This text will be sent to a person who send results of calculation.</p>
+                <div text-angular ng-model="activeField.params.emailMessage" ta-toolbar="[['h2','h3','h4','pre','quote'], ['bold','italics','underline','ul','ol','redo','undo'], ['html','insertLink']]"></div>
+            </div>
+            <div class="col-md-12">
+                <h3>Available variables</h3>
+                <p>These variables will be replaced by actual data before the email will be sent.</p>
+                <div ng-include="'views/text-variables.html'"></div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+         <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputEmailSubject">Button text</label>
+                    <input type="text" ng-model="activeField.params.buttonText" class="form-control" id="inputButtonText" placeholder="Proceed to Payment ({amount} {currency})" uib-tooltip="The text which will appear on the payment button">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <br/>
+                <p class="text-muted">
+                    <i class="fa fa-angle-double-left"></i> Available variables:<br/>
+                    <code>{amount}</code> ... The numeric amount from the field you've selected to be paid amount.<br/>
+                    <code>{currency}</code> ... The currency you've selected.
+                </p>
+            </div>
+        </div>
+    </uib-tab>
+</uib-tabset>

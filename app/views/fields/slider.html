@@ -1,0 +1,20 @@
+<div class="slider" id="field_{{field.id}}">
+	<div class="slider-wrapper">
+		<input ng-model="field.value" type="text" slider options="{from: field.params.valueMin, to: field.params.valueMax, step: field.params.step, dimension: field.postfix, round: field.decimalPlaces, smooth: true, limits: true, vertical: false, scale: [], css: {background: {'background-color': '#a9acb1'},before: {'background-color': '#017afd'},default: {'background-color': 'white'},after: {'background-color': '#017afd'},pointer: {'background-color': 'rgb(1, 122, 253)'}}, scale: prepareSliderScale(field.params.scale)}" class="hide" />
+	</div>
+
+	<div class="slider-input-wrapper">
+		<span class="prefix">{{field.prefix}}</span>&nbsp;
+		<!-- TODO in order to use input as well, field.value has to be a number -->
+		<!-- <input
+			type="number"
+			ng-model="field.value"
+			step="{{field.params.step}}"
+			max="{{field.params.valueMax}}"
+			min="{{field.params.valueMin}}"
+			 /> -->
+		<span>{{field.value | formatNumber:calc.params.separatorThousand:calc.params.separatorDecimal}}</span>
+		&nbsp;<span class="postfix">{{field.postfix}}</span>
+
+	</div>
+</div>

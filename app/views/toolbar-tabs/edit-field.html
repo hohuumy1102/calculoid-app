@@ -1,0 +1,26 @@
+<span class="fa fa-times close-toolbar-content" ng-click="toolbarClose();"> </span>
+<div class="col-xs-5 col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">Fields of this calculator</div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-repeat="field in calc.fields" ng-class="(activeField.id === field.id) ? 'active' : ''">
+                    <a ng-click="editCalcField(field,true)">{{field.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-7 col-md-8">
+    <div ng-if="activeField.hasOwnProperty('id')">
+        <div class="edit-field-body">
+            <form role="form">
+                <div ng-include="'views/fields/' + activeField.type + '-edit.html'"></div>
+            </form>
+        </div>
+    </div>
+    <div ng-if="!activeField.hasOwnProperty('id')" class="select-field-info text-muted text-center">
+        <i class="fa fa-hand-o-left"></i> Select the field you want to edit
+    </div>
+</div>

@@ -1,0 +1,157 @@
+<span class="fa fa-times close-toolbar-content" ng-click="toolbarClose();"> </span>
+    <div class="row-fluid">
+        <div class="col-lg-12">
+            <h1 ng-if="!calculator.id">
+                <span>New calc basic setting</span>
+            </h1>
+            <uib-alert ng-if="!calc.id" ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}</uib-alert>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="calcName" class="col-md-2 control-label">Calc name</label>
+                    <div class="col-md-10">
+                        <input type="text" ng-model="calc.name" class="form-control" placeholder="Enter name of the calculator" id="calcName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="calcDesc" class="col-md-2 control-label">Calc description</label>
+                    <div class="col-md-10">
+                        <textarea ng-model="calc.description" class="form-control" id="calcDesc"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="calcLang" class="col-md-2 control-label">Calc language</label>
+                    <div class="col-md-2">
+                        <select ng-model="selectedLanguage" ng-options="l.name for l in languages.items" ng-init="loadLanguages()" ng-change="changeLanguage(selectedLanguage)" id="calcLang" class="form-control">
+                            <option value="">-- choose language --</option>
+                        </select>
+                    </div>
+                    <div ng-if="calc.id">
+                        <label for="calcTheme" class="col-md-2 control-label">Theme</label>
+                        <div class="col-md-2">
+                            <select ng-model="calc.params.theme" id="calcTheme" class="form-control">
+                                <option value="">Default</option>
+                                <option value="dark-background">Dark Background</option>
+                                <option value="gradient">Gradient</option>
+                                <option value="bordered">Bordered</option>
+                                <option value="plain">Plain</option>
+                            </select>
+                        </div>
+                        <label for="calcColorScheme" class="col-md-2 control-label">Color Scheme</label>
+                        <div class="col-md-2">
+                            <select ng-model="calc.params.colorScheme" id="calcColorScheme" class="form-control">
+                                <option value="">Default</option>
+                                <option value="blue">Blue</option>
+                                <option value="red">Red</option>
+                                <option value="green">Green</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Calc tags</label>
+                    <div class="col-md-10">
+                        <tags-input ng-model="calc.tags" class="bootstrap">
+                            <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
+                        </tags-input>
+                    </div>
+                </div>
+                <div ng-if="calc.id">
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Style</label>
+                        <div class="col-md-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-model="calc.default" uib-btn-radio="1" ng-class="{active: calc.default == 1}">Public</button>
+                                <button type="button" class="btn btn-default" ng-model="calc.default" uib-btn-radio="0" ng-class="{active: calc.default == 0}" >inherited</button>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <em>
+                                If <kbd>default</kbd>, calculator will be embedded as you can see it in Calculoid.<br> If <kbd>inherited</kbd>, calculator will inherit styling from page it is embedded and can be styled within you site's CSS.
+                            </em>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Is finished</label>
+                        <div class="col-md-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-model="calc.finished" uib-btn-radio="1" ng-class="{active: calc.finished == 1}">Yes</button>
+                                <button type="button" class="btn btn-default" ng-model="calc.finished" uib-btn-radio="0" ng-class="{active: calc.finished == 0}">No</button>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <em>When a calculator <kbd>Is finished</kbd>, you can embed it and when <kbd>Is private</kbd> as well, anyone can see it, rate it, copy it and embed it.</em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Calculator is</label>
+                        <div class="col-md-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-model="calc.private" uib-btn-radio="0" ng-class="{active: calc.private == 0}">Public</button>
+                                <button type="button" class="btn btn-default" ng-model="calc.private" uib-btn-radio="1" ng-class="{active: calc.private == 1}" >Private</button>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <em>Anyone can see, rate, copy and embed a <kbd>Public</kbd> calculator. A <kbd>Private</kbd> calculator can see and embed only it's author. This feature will work only if your membership enables it.</em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Signature</label>
+                        <div class="col-md-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-model="calc.signature" uib-btn-radio="1" ng-class="{active: calc.signature == 1}">Show</button>
+                                <button type="button" class="btn btn-default" ng-model="calc.signature" uib-btn-radio="0" ng-class="{active: calc.signature == 0}">Hide</button>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <em>You can hide <kbd>Calculoid Signature</kbd> below embeded calculators. This feature will work only if your membership enables it.</em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Notifications</label>
+                        <div class="col-md-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-model="calc.notify" uib-btn-radio="1" ng-class="{active: calc.notify == 1}">Yes</button>
+                                <button type="button" class="btn btn-default" ng-model="calc.notify" uib-btn-radio="0" ng-class="{active: calc.notify == 0}">No</button>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <em>Calculoid will send you email notifications if the view limit will be at 80% and when it will be overcome so you'd be aware of what's going on. You can switch them off if you find them annoying.</em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="separatorThousand" class="col-md-2 control-label">Thousand separator</label>
+                        <div class="col-md-4">
+                            <select ng-model="calc.params.separatorThousand" id="separatorThousand" class="form-control">
+                                <option value=",">Comma</option>
+                                <option value=".">Dot</option>
+                                <option value="espace">Space</option>
+                            </select>
+                        </div>
+
+                        <label for="separatorDecimal" class="col-md-2 control-label">Decimal separator</label>
+                        <div class="col-md-4">
+                            <select ng-model="calc.params.separatorDecimal" id="separatorDecimal" class="form-control">
+                                <option value=",">Comma</option>
+                                <option value=".">Dot</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="!calc.id" class="form-group">
+                    <div class="col-md-10 pull-right">
+                        <button type="button" class="btn btn-success" ng-click="saveCalcConfig()">
+                            <i class="fa fa-floppy-o"></i> Save configuration
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="calc.id" class="form-group">
+                    <a ng-click="deleteReally()" class="text-danger pull-right">
+                        <i class="fa fa-times"></i> Delete Calculator
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>

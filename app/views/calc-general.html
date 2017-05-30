@@ -1,0 +1,24 @@
+<div class="container">
+	<h1>{{calc.name}}
+
+		<uib-rating ng-if="calc.id" class="rating" ng-model="rating.value" readonly="!(user.logged === 'in' && calc.canEdit !== true)" state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="hoveringRating(rating.value)"></uib-rating>
+
+		<span ng-if="calc.id && (user.logged === 'in' && calc.canEdit !== true)" class="btn-rating">
+			<span ng-if="rating.saved === false && rating.valueSelected">
+				<button class="btn btn-primary" type="button" ng-click="rate()">
+					Save rating: <b>{{rating.value}} out of 5 ({{rating.evaluate()}})</b>
+				</button>
+			</span>
+			<span ng-if="rating.saved === true">
+				<button type="button" class="btn btn-primary" disabled="disabled">Your rating is saved.</button>
+			</span>
+			<small ng-if="calc.ratingCount">Rated {{calc.ratingCount}}x</small>
+			<small ng-if="!calc.ratingCount">Not rated yet.</small>
+		</span>
+	</h1>
+<!--
+	<span ng-if="(user.logged === 'in' && calc.canEdit !== true)">
+		<span>Rate this calculator. Select how many stars it deserve: </span>
+	</span> -->
+	<p class="calc-desc" ta-bind ng-model="calc.description"></p>
+</div>

@@ -1,0 +1,51 @@
+<div class="container">
+    <h1>
+        10 Latest Webhooks
+    </h1>
+    <uib-alert ng-repeat="alert in webhooks.alerts" type="alert.type">{{alert.msg}}</uib-alert>
+    <div class="pb-10 row">
+        <div class="col-xs-2">
+            <a class="btn btn-default" href="#/calculator/{{calcId}}">
+                <i class="fa fa-reply"></i> Back to Calculator
+            </a>
+        </div>
+    </div>
+    <accordion close-others="true">
+        <accordion-group ng-repeat="webhook in webhooks">
+            <accordion-heading>
+                <span ng-class="getStatusStyle(webhook.http_code)">
+                    <i class="fa fa-circle"></i> {{webhook.http_code}}
+                </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>
+                    <i class="fa fa-calendar"></i> {{webhook.created}}
+                </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>
+                    <i class="fa fa-history"></i> {{webhook.total_time}} s
+                </span>
+            </accordion-heading>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Query Info</h3>
+                    <pre class="height-250">{{showInfo(webhook)}}</pre>
+                </div>
+                <div class="col-md-6">
+                    <h3>URL Query - Readable</h3>
+                    <pre class="height-250">{{webhook.query_object | json : spacing}}</pre>
+                </div>
+            </div>
+            <h3>Response Content</h3>
+            <pre class="height-250">{{webhook.content}}</pre>
+            <h3>URL Query - URL Encoded</h3>
+            <pre class="height-250">{{webhook.query}}</pre>
+
+            <button type="button" class="btn btn-info pull-right" ng-click="resend($index)" ng-disabled="webhook.inProgress">
+                <i class="fa fa-refresh"></i> Re-send this webhook
+            </button>
+        </accordion-group>
+    </accordion>
+
+    <div class="clearfix"></div>
+
+</div>

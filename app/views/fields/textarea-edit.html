@@ -1,0 +1,34 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Textarea Field Config</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputValue">Textarea Height</label>
+                    <input type="text" ng-model="activeField.params.textareaHeight" class="form-control" id="inputValue" placeholder="Default rows"/>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>Show word count</label>
+                    <div>
+                        <div class="btn-group" uib-tooltip="The word count can be used for example in calculation of a text translations.">
+                            <button type="button" class="btn btn-default" ng-model="activeField.params.showWordCount" uib-btn-radio="1" ng-class="{active: activeField.params.showWordCount == 1}">Yes</button>
+                            <button type="button" class="btn btn-default" ng-model="activeField.params.showWordCount" uib-btn-radio="0" ng-class="{active: activeField.params.showWordCount != 1}">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+    </uib-tab>
+</uib-tabset>

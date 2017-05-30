@@ -1,0 +1,30 @@
+
+<li uib-dropdown is-open="userMenuIsOpen">
+    <a id="user-menu" type="button" href="#" uib-dropdown-toggle>
+        <span ng-if="user.avatar">
+            <img ng-src="{{user.avatar}}" alt="{{user.name}}" toolbar="{{user.name}}" class="avatar img-circle" />
+            <b class="caret"></b>
+        </span>
+        <span ng-if="!user.avatar">
+            <i class="fa fa-user"></i> {{user.name}} <b class="caret"></b>
+        </span>
+    </a>
+    <ul class="uib-dropdown-menu" role="menu" aria-labelledby="user-menu">
+        <li>
+            <a href="#/profile">My profile</a>
+        </li>
+        <li>
+            <a href="#/my/calculators">My calculators</a>
+        </li>
+        <li ng-if="isAdmin()">
+            <a href="#/users">User Manager</a>
+        </li>
+        <li ng-if="isAdmin()">
+            <a href="#/stats">Statistics</a>
+        </li>
+        <li role="presentation" class="divider"></li>
+        <li>
+            <a ng-click="logout()">Log out</a>
+        </li>
+    </ul>
+</li>

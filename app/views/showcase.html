@@ -1,0 +1,25 @@
+<div class="calculator-list-header">
+	<div class="container">
+	    <h1>
+	        Showcase<br />
+	        <small>Check out how Calculoid users have used their calculators via embed recently</small>
+	    </h1>
+	</div>
+</div>
+<div class="container">
+	<uib-alert ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}</uib-alert>
+	<ul class="list-unstyled">
+		<li ng-repeat="domain in domains">
+			<h3>
+				{{domain.count}}
+				<a href="{{getDomainLink(domain)}}" target="blank">
+					{{ucfirst(stripHttp(domain.origin))}}
+				</a>
+				<small> is using calculator <a href="#/calculator/{{domain.calculatorId}}">{{domain.calculatorName}}</a></small>
+			</h3>
+		</li>
+	</ul>
+	<p>
+		<i>* This list of showcase examples is generated automatically from mostly loaded embed calculators and can change every minute.</i>
+	</p>
+</div>

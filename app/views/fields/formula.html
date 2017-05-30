@@ -1,0 +1,14 @@
+<div class="formula" id="field_{{field.id}}">
+	<span class="prefix">{{field.prefix}}</span>
+	<calculoid-formula 
+        values="formulaValues" 
+        formula="field.value" 
+        round="getDecimalPlaces(field)" 
+        separator-thousand="calc.params.separatorThousand" 
+        separator-decimal="calc.params.separatorDecimal" 
+        result="field.result" 
+        error="field.formulaError"
+        clickrun="field.clickrun">
+    </calculoid-formula>
+	<span class="postfix">{{field.postfix}}</span>
+</div>

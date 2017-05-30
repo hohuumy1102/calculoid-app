@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputName">Name</label>
+        <div class="form-group">
+            <input type="text" ng-model="activeField.name" class="form-control" id="inputName" placeholder="Field Name"/>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <a type="button" class="text-danger pull-right" ng-click="deleteField(activeField);" uib-tooltip="Delete the field" uib-tooltip-placement="bottom">
+            <i class="fa fa-times"></i> Remove field
+        </a>
+        <div class="checkbox">
+            <label for="inputdisplayName">
+                <input type="checkbox" ng-model="activeField.labelShow" ng-true-value="1" ng-false-value="0" id="inputdisplayName"/> Display Name
+            </label>
+        </div>
+        <div class="checkbox">
+            <label for="inputdisplayField">
+                <input type="checkbox" ng-model="activeField.params.fieldShow" ng-true-value="1" ng-false-value="0"/> Display field to public
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputDecimalPlaces">Decimal Places</label>
+        <div class="form-group">
+            <input type="number" ng-model="activeField.decimalPlaces" class="form-control" id="inputDecimalPlaces" placeholder="Round to x decimal places" max="10" min="0">
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputHint">Hint</label>
+        <div class="form-group">
+            <input type="text" ng-model="activeField.hint" class="form-control" id="inputHint" placeholder="Field Hint"/>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputPrefix">Prefix</label>
+        <div class="form-group">
+            <input type="text" ng-model="activeField.prefix" class="form-control" id="inputPrefix" placeholder="Field Prefix"/>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <label for="inputPostfix">Postfix</label>
+        <div class="form-group">
+            <input type="text" ng-model="activeField.postfix" class="form-control" id="inputPostfix" placeholder="Field Postfix"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="calculator-list-header">
+    <div class="container">
+        <h1>
+            List of <span ng-if="selectedTag" class="text-color">{{getTag()}}</span> calculators
+        </h1>
+
+        <div class="row">
+            <div class="search col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" placeholder="Search" ng-model="search" ng-change="changeSearch()" class="form-control">
+                </div>
+            </div>
+            <div class="search col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon">Language</span>
+                    <select ng-model="language" ng-change="changeLanguage()" ng-options="(l.name + ' (' + l.count + ')') for l in languages.items" class="form-control"></select>
+                </div>
+            </div>
+            <div class="search col-xs-4">
+                <a ng-click="create()" class="btn btn btn-primary ng-binding pull-right">
+                    <i class="fa fa-plus-circle"></i> New Calculator
+                </a>
+            </div>
+        </div>
+
+        <div class="row tags">
+            <div class="tags col-xs-12">
+                <a ng-if="selectedTag" class="btn btn-warning btn-xs" ng-click="setTag('')">
+                    <i class="fa fa-times"></i>
+                    Clear tag filter:
+                </a>
+                <span ng-if="!selectedTag">Filter by tags:</span>
+                <button type="button" ng-repeat="tag in tags.data" ng-click="setTag(tag.text)" class="tag btn btn-default btn-xs" ng-class="{active: tag.text === selectedTag}">
+                    {{tag.text}} ({{tag.count}})
+                </button>
+                <a ng-click="loadTags()">{{tagsLoad}} tags</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <div class="row calc-list">
+        <div ng-repeat="calc in calcList.calcs" class="col-xs-12 col-md-6 calc-item finished-{{calc.finished}}">
+            <h4 class="calc-item-heading">
+                <span ng-if="(user.logged === 'in') && calc.finished == '0'">
+                    <abbr title="Not finished / Not publicly visible">
+                        <i class="fa fa-eye-slash text-muted"></i>
+                    </abbr>
+                </span>
+                <span ng-if="(calc.author && user.logged === 'in') && calc.finished == '1'">
+                    <abbr title="Is finished / Is publicly visible">
+                        <i class="fa fa-eye text-muted"></i>
+                    </abbr>
+                </span>
+                <span ng-if="(calc.author && user.logged === 'in')">
+                    <abbr title="You are author of this calc">
+                        <i class="fa fa-unlock text-muted"></i>
+                    </abbr>
+                </span>
+                <a href="#/calculator/{{calc.id}}">
+                    {{calc.name}}
+                </a>
+            </h4>
+
+
+
+            <div class="calc-item-info">
+                <span>by {{calc.authorName}}</span>
+                <span ng-if="calc.rating">&nbsp;|
+                    <abbr title="{{calc.rating}} out of 5">
+                        <uib-rating class="rating" ng-model="calc.rating" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></uib-rating>
+                    </abbr>
+                    <span>{{calc.ratingCount}}x</span>
+                </span>
+                <span ng-if="calc.language">&nbsp;|
+                    <abbr title="Language">
+                        <span>{{calc.language}}</span>
+                    </abbr>
+                </span>
+                <span>&nbsp;|
+                    created&nbsp;
+                    <abbr title="{{calc.created}}">
+                        <span am-time-ago="calc.created"></span>
+                    </abbr>
+                </span>&nbsp;|
+                <span>modified&nbsp;
+                    <abbr title="{{calc.modified}}">
+                        <span am-time-ago="calc.modified"></span>
+                    </abbr>
+                </span>
+            </div>
+
+            <div class="list-group-item-text">{{calc.description}}</div>
+
+            <div ng-if="calc.tags" class="calc-item-tags">
+                <small>
+                    Tags:
+                    <span ng-repeat="tag in calc.tags" class="tag">
+                        <a ng-click="setTag(tag)">
+                            {{tag}}
+                        </a>
+                    </span>
+                </small>
+            </div>
+        </div>
+        <div class="clearfix"></div>        
+        <div class="text-center">
+            <uib-pagination total-items="calcList.pg.total" ng-model="calcList.pg.current" items-per-page="calcList.pg.limit" max-size="9" ng-change="onGoToPage()" boundary-links="true"></uib-pagination>
+        </div>
+
+    </div>
+
+</div>

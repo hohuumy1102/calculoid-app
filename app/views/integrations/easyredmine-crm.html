@@ -1,0 +1,160 @@
+<div class="col-md-8">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="inputRedmineUrl">Redmine URL</label>
+            <input type="url" ng-model="calc.params.easyredmineCrmUrl" placeholder="http://" class="form-control" id="inputRedmineUrl" />
+            <small>
+                The base URL address to your Redmine installation. Has to start with http:// or https://.
+            </small>
+        </div>
+        <div class="col-md-6">
+            <label for="inputRedmineKey">Redmine API key</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmKey" class="form-control" id="inputRedmineKey" />
+            <small>
+                The API key of the account which will be author of the created CRM cases. API key can be found in the Redmine Account Detail.
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="inputRedmineSubject">Name</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmName" class="form-control" id="inputRedmineName" />
+            <small>
+                Name of the CRM case.
+            </small>
+        </div>
+        <div class="col-md-6">
+            <label for="inputRedmineDescription">Description</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmDescription" class="form-control" id="inputRedmineDescription" />
+            <small>
+                Description of the CRM case.
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="inputRedmineProject">Project ID</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmProject" class="form-control" id="inputRedmineProject" />
+            <small>
+                Id of the project the CRM case will create in. The ID can be seen in the URL when you view the project.
+            </small>
+        </div>
+        <div class="col-md-6">
+            <label for="inputRedmineAuthorId">Author ID</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmAuthorId" class="form-control" id="inputRedmineAuthorId" />
+            <small>
+                Id of the author the CRM case will be created with.
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="inputRedmineStatus">Status ID</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmStatus" class="form-control" id="inputRedmineProject" />
+            <small>
+                Id of the status the CRM case will be created with. <span class="text-danger">Note, that this value is required to save the custom field values.</span>
+            </small>
+        </div>
+        <div class="col-md-6">
+            <label for="inputRedmineEmail">Email</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmEmail" class="form-control" id="inputRedmineEmail" />
+            <small>
+                Id of the email the CRM case will be created with.
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="inputRedmineAssignedTo">Assigned to ID</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmAssignedTo" class="form-control" id="inputRedmineAssignedTo" />
+            <small>
+                Id of the assigned to (redmine user) the CRM case will be created with.
+            </small>
+        </div>
+        <div class="col-md-6">
+            <label for="inputRedminePhone">Phone</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmPhone" class="form-control" id="inputRedminePhone" />
+            <small>
+                Id of the telephone the CRM case will be created with.
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="easyredmineCrmPrice">Price</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmPrice" class="form-control" id="easyredmineCrmPrice" />
+            <small>
+                Id of the Price the CRM case will be created with.
+            </small>
+        </div>
+        <div class="col-md-6">
+            <label for="easyredmineCrmCurrency">Currency</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmCurrency" class="form-control" id="easyredmineCrmCurrency" />
+            <small>
+                Id of the currency the CRM case will be created with.
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="easyredmineCrmNeedReaction">Need Reaction</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmNeedReaction" class="form-control" id="easyredmineCrmNeedReaction" />
+            <small>
+                Id of the Need Reaction flag the CRM case will be created with.
+            </small>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+    <div class="row">
+        <h3>Easy Redmine CRM Custom field mapping</h3>
+        <div class="col-md-12">
+            <button ng-click="loadEasyRedmineCustomFields(calc, 'easy_crm_case')" class="btn btn-default btn-xs pull-right">Load Easy Redmine CRM Custom Fields</button>
+        </div>
+        <div class="col-md-6 form-group" ng-repeat="field in easyredmineCrmCustomFields">
+            <label for="inputRedmineCustomField-{{field.id}}">{{field.name}}</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmCustomFields[field.id]" class="form-control" id="inputRedmineCustomField-{{field.id}}" />
+            <small ng-if="field.possible_values">
+                <strong>Available options:</strong>
+                <span ng-repeat="option in field.possible_values">{{option.value}}, </span>
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <h3>CRM case item</h3>
+        <div class="col-md-6">
+            <label for="easyredmineCrmItemAmount">Amount</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmItemAmount" class="form-control" id="easyredmineCrmItemAmount" />
+        </div>
+        <div class="col-md-6">
+            <label for="easyredmineCrmItemUnit">Unit</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmItemUnit" class="form-control" id="easyredmineCrmItemUnit" />
+        </div>
+        <div class="col-md-6">
+            <label for="easyredmineCrmItemName">Name</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmItemName" class="form-control" id="easyredmineCrmItemName" />
+        </div>
+        <div class="col-md-6">
+            <label for="easyredmineCrmItemDescription">Description</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmItemDescription" class="form-control" id="easyredmineCrmItemDescription" />
+        </div>
+        <div class="col-md-6">
+            <label for="easyredmineCrmItemPricePerUnit">Price per unit</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmItemPricePerUnit" class="form-control" id="easyredmineCrmItemPricePerUnit" />
+        </div>
+        <div class="col-md-6">
+            <label for="easyredmineCrmItemTotalPrice">Total price</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmItemTotalPrice" class="form-control" id="easyredmineCrmItemTotalPrice" />
+        </div>
+        <div class="col-md-6">
+            <label for="easyredmineCrmItemProductCode">Product code</label>
+            <input type="text" ng-model="calc.params.easyredmineCrmItemProductCode" class="form-control" id="easyredmineCrmItemProductCode" />
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <h3>Available variables</h3>
+    <p>These variables will be replaced by actual data before the CRM case will be sent to Redmine.</p>
+    <div ng-include="'views/text-variables.html'"></div>
+</div>

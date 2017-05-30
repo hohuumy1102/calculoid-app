@@ -1,0 +1,13 @@
+<div class="text" id="field_{{field.id}}">
+	<table class="table">
+		<tr ng-repeat="row in field.table">
+			<td ng-repeat="val in row">
+				{{val}}
+			</td>
+		</tr>
+	</table>
+	<span class="prefix">{{field.prefix}}</span>
+	<input type="text" ng-model="field.value" />
+	<span class="postfix">{{field.postfix}}</span>
+</div>
+<pre>{{field | json}}</pre>

@@ -1,0 +1,23 @@
+.navbar.navbar-fixed-bottom																																																																																																																																																																																																																																																																																																																																																																							navbar.navbar-fixed-bottom {
+    /*-webkit-transition: width 5s;
+    transition: width 5s;
+    transition-timing-function: ease;*/
+}
+#editor-tools {
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    /*transition-timing-function: ease;*/
+
+}
+#editor-tools ul.navbar-nav{
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+    /*transition-timing-function: ease;*/
+
+}

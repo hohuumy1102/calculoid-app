@@ -1,0 +1,117 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Gauge Config</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="paymentCurrency">Display value from field</label>
+					<select ng-model="activeField.params.valueField" uib-tooltip="Select which field holds the value for Gauge." class="form-control">
+						<option ng-repeat="f in calc.fields" value="{{f.id}}" ng-selected="activeField.params.valueField === f.id">
+							{{f.name}}
+						</option>
+					</select>
+				</div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="inputGaugeWidth">Gauge Max Width</label>
+					<div class="input-group">
+						<input type="number" ng-model="activeField.params.width" class="form-control" id="inputGaugeWidth" placeholder="200"/>
+						<span class="input-group-addon">px</span>
+					</div>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="inputMin">Min Value</label>
+					<input type="number" ng-model="activeField.params.min" class="form-control" id="inputMin" placeholder="0"/>
+				</div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="inputMax">Max Value</label>
+					<input type="number" ng-model="activeField.params.max" class="form-control" id="inputMax" placeholder="10"/>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="inputMajorTicks">Major Ticks</label>
+					<input type="number" ng-model="activeField.params.majorTicks" class="form-control" id="inputMajorTicks" placeholder="5"/>
+				</div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="inputMinorTicks">Minor Ticks</label>
+					<input type="number" ng-model="activeField.params.minorTicks" class="form-control" id="inputMinorTicks" placeholder="5"/>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="greenFrom">Green From</label>
+					<input type="number" ng-model="activeField.params.greenFrom" class="form-control" id="greenFrom" placeholder="0"/>
+				</div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="greenTo">Green to</label>
+					<input type="number" ng-model="activeField.params.greenTo" class="form-control" id="greenTo" placeholder="10"/>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="yellowFrom">Yellow From</label>
+					<input type="number" ng-model="activeField.params.yellowFrom" class="form-control" id="yellowFrom" placeholder="0"/>
+				</div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="yellowTo">Yellow to</label>
+					<input type="number" ng-model="activeField.params.yellowTo" class="form-control" id="yellowTo" placeholder="10"/>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="redFrom">Red From</label>
+					<input type="number" ng-model="activeField.params.redFrom" class="form-control" id="redFrom" placeholder="0"/>
+				</div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="redTo">Red to</label>
+					<input type="number" ng-model="activeField.params.redTo" class="form-control" id="redTo" placeholder="10"/>
+				</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+					<label for="header">Text inside</label>
+					<input type="number" ng-model="activeField.params.header" class="form-control" id="header"/>
+				</div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+    </uib-tab>
+</uib-tabset>

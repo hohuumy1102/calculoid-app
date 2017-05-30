@@ -1,0 +1,12 @@
+<span class="fa fa-times close-toolbar-content" ng-click="toolbarClose();"> </span>
+<div class="col-md-12">
+    <i class="fa fa-info"></i>
+    <i>Select which field type you want to add to your calculator and click on it. It will add the new field at the bottom of the calculator.</i>
+</div>
+<div class="col-md-4 col-lg-3 col-sm-4" ng-repeat="field in fields.fields" data-field-id="{{field.id}}">
+    <button class="btn btn-default btn-lg" ng-click="addField(field)">
+        <i class="fa {{field.icon}} pull-left"></i>
+        {{field.name}}
+    </button>
+    <i><small class="text-muted pull-right">{{field.description}}</small></i>
+</div>

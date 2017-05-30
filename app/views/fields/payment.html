@@ -1,0 +1,41 @@
+<div class="field-payment" id="field_{{field.id}}">
+	<uib-alert ng-repeat="alert in paymentAlerts" type="alert.type">{{alert.msg}}</uib-alert>
+	<div class="prefix">{{field.hint}}</div>
+	<span class="prefix">{{field.prefix}}</span>
+	<input type="text" ng-model="customer.email" class="form-control" id="inputValue" placeholder="Email address" />
+	<div class="pt-10 text-center" ng-if="field.params.paypalEnabled == 1 && field.params.stripeEnabled == 1">
+		<label class="calculoid-w50pr">
+			<input type="radio" ng-model="field.params.paymentGate" value="paypal">
+			PayPal
+			<img class="pt-10 calculoid-payment-logos" src="images/paypal-logo.png" alt="PayPal logo"/>
+		</label>
+		<label class="calculoid-w50pr">
+			<input type="radio" ng-model="field.params.paymentGate" value="stripe">
+			Credit Card
+			<img class="pt-10 calculoid-payment-logos" src="images/card-logo.png" alt="Card logo"/>
+		</label>
+	</div>
+	<div class="text-center pt-10">
+		<button type="button" class="btn btn-primary" ng-click="pay(field)">
+			<span ng-if="!field.params.buttonText">Proceed to Payment ({{getFieldValue(field.params.priceField) | number}} {{field.params.currency}})</span>
+			<span ng-if="field.params.buttonText">{{getPayButtonText(field)}}</span>
+		</button>
+	</div>
+	<span class="paymentStatus" ng-if="customer.paymentStatus">Status: {{customer.paymentStatus}}</span>
+	<span class="postfix">{{field.postfix}}</span>
+
+	<form id="paypalform_{{field.id}}" action="{{field.params.paypalGate}}" method="post" >
+		<input type="hidden" name="cmd" value="_xclick" />
+		<input type="hidden" name="business" value="{{getPaypalEmail(field)}}" />
+		<input type="hidden" name="notify_url" value="http://api.calculoid.com/payment/notify" />
+		<input type="hidden" name="bn" value="calculoid" />
+		<input type="hidden" name="custom" id="calculoidOrderId_{{calc.id}}" value="{{customer.orderId}}" />
+		<input type="hidden" name="item_number" value="{{calc.id}}" />
+		<input type="hidden" name="item_name" value="{{calc.name}}" />
+		<input type="hidden" name="currency_code" value="{{field.params.currency}}" />
+		<input type="hidden" name="amount" value="{{getFieldValue(field.params.priceField, 2)}}" />
+		<input type="hidden" name="email" value="{{customer.email}}" />
+		<input type="hidden" name="return" value="http://api.calculoid.com/payment/done" />
+		<input type="hidden" name="cancel_return" value="{{currentUrl}}" />
+	</form>
+</div>

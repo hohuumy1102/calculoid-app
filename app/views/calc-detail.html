@@ -1,0 +1,70 @@
+<div ng-class="(activeField.hasOwnProperty('id')) ? 'edit-field-opened' : 'edit-field-closed'" class=" {{rootClass}} calculoid-theme-{{(calc.params.theme || 'default')}} calculoid-color-scheme-{{(calc.params.colorScheme || 'default')}}">
+
+    <div ng-if="calc.id">
+        <div ng-include="'views/calc-general.html'" class="calc-general-info"></div>
+
+        <div class="container fields-container">
+            <uib-alert ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}</uib-alert>
+            <div ng-if="hasFields()">
+                <div ng-if="calc.useGrid || calc.canEdit" gridster="gridsterOpts">
+                    <ul>
+                        <li gridster-item="field"
+                            ng-repeat="field in calc.fields | orderObjectBy:'ordering'"
+                            id="calculoid-field-{{field.id}}"
+                            class="calculoid-field-item"
+                            ng-class="{active: activeField.id === field.id, hide: !field.params.fieldShow && !(user.logged === 'in' && calc.canEdit)}"
+                            ng-style="{'font-size': field.fontSize > 9 && field.fontSize+'px' || 'auto', background: field.backgroundColor, color: field.fontColor}">
+                            <div class="calculoid-box" ng-class="{'no-h4': field.labelShow == 0}">
+                                <h4 ng-if="field.labelShow" class="calculoid-field-title" ng-style="{'font-size': field.labelSize > 9 && field.labelSize+'px' || 'auto'}">{{field.name}}</h4>
+                                <p ng-if="field.hint">{{field.hint}}</p>
+                                <div ng-if="field.type">
+                                    <div ng-include="'views/fields/'+field.type+'.html'" data-calculoid-field="field"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <span ng-if="field.error" class="field-error">{{field.error}}</span>
+                            </div>
+                            <div ng-include="loadToolbarFields()" class="slide-item"></div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Legacy floating fields system -->
+                <div ng-if="!calc.useGrid && !calc.canEdit">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="field in calc.fields | orderObjectBy:'ordering'"
+                            id="calculoid-field-{{field.id}}"
+                            class="field-item floating"
+                            ng-class="{active: activeField.id === field.id}"
+                            ng-style="{'width': field.width && field.width+'%' || 'auto'}">
+
+                            <div class="calculoid-box" ng-style="{'font-size': field.fontSize > 9 && field.fontSize+'px' || 'auto', background: field.backgroundColor, color: field.fontColor}">
+                                <div ng-include="loadToolbarFields()" class="slide-item"></div>
+                                <h4 ng-if="field.labelShow" class=".calculoid-field-title" ng-style="{'font-size': field.labelSize > 9 && field.labelSize+'px' || 'auto'}">{{field.name}}</h4>
+                                <p ng-if="field.hint">{{field.hint}}</p>
+                                <div ng-if="field.type">
+                                    <div ng-include="'views/fields/'+field.type+'.html'" data-calculoid-field="field"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <span ng-if="field.error" class="field-error">{{field.error}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-if="!hasFields()" class="empty-calc">
+                <div class="page-header">
+                    <h1>So far so good! <small>Calculator is created! Lets add some fields to it.</small></h1>
+                    <br>
+                    <ol>
+                        <li>Do you see the toolbar down there <i class="fa fa-hand-o-down fa-rotate-45"></i> ?</li>
+                        <li>Click the <b><i class="fa fa-plus"></i> Add Field</b> item and select the field(s) you want to add.</li>
+                    </ol>
+                    <br>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div ng-include="loadGeneralToolbar()" ng-click="toggleSearch()" ng-class="{expanded: open, collapsed: !open}" ng-controller="ToolbarCtrl" class="hander-right navbar navbar-default navbar-fixed-bottom"  ng-style="getToolbarStyle()" document-click='click($event)' id="editor-tools"></div>

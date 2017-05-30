@@ -1,0 +1,210 @@
+h4.calculoid-field-title {
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Default Theme */
+.calculoid-theme-default .gridster .gridster-item {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 2px 10px;
+  overflow: visible;
+}
+
+/* Plain Theme */
+.calculoid-theme-plain .calculoid-field-item {
+  padding: 10px;
+  border: 1px dashed transparent;
+}
+ .calculoid-theme-plain .calculoid-field-item:hover {
+  border: 1px dashed #aaa;
+}
+ /* Gradient Theme */
+.calculoid-theme-gradient .gridster .gridster-item {
+  border-radius: 4px;
+  -moz-box-shadow: 2px 2px 5px 0px #656565;
+  -webkit-box-shadow:  2px 2px 5px 0px rgba(0,0,0,0.2);
+  -o-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
+  box-shadow:  2px 2px 5px 0px rgba(0,0,0,0.2);
+  padding: 0;
+  color: #333333;
+  background: rgb(223,223,223); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(223,223,223,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(223,223,223,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(223,223,223,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(223,223,223,1) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(223,223,223,1) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(223,223,223,1) 0%,rgba(255,255,255,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dfdfdf', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+.calculoid-theme-gradient .gridster-desktop .calculoid-field-item .calculoid-box {
+  overflow: hidden;
+  padding: 30px 15px 5px 15px;
+  transform: none;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.calculoid-theme-gradient .gridster-desktop .calculoid-field-item .calculoid-box.no-h4 {
+  padding-top: 5px;
+}
+.calculoid-theme-gradient .gridster-desktop .calculoid-field-item .calculoid-box > p, .gridster-desktop .calculoid-field-item .calculoid-box > div {
+  padding: 0;
+  width: 100%;
+}
+.calculoid-theme-gradient .gridster-desktop .calculoid-field-item .calculoid-box > p {
+  line-height: 1.2;
+  margin: 0;
+}
+.calculoid-theme-gradient .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #000000;
+  background: #fff;
+  margin: 0;
+  padding: 4px 20px 4px 20px;
+  font-size: 20px;
+  overflow: hidden;
+  border-radius:4px 4px 0 0px ;
+  font-weight: normal;
+  border: none;
+}
+
+.calculoid-theme-gradient input[type="text"] {
+  border-radius: 4px;
+  font-size: 13px;
+  height: 31px;
+}
+
+/* Gradient Theme - Blue Scheme */
+.calculoid-theme-gradient.calculoid-color-scheme-blue .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #fff;
+  background: #147AF9;
+  border-bottom: 2px solid #0F5CBD;
+}
+/* Gradient Theme - Red Scheme */
+.calculoid-theme-gradient.calculoid-color-scheme-red .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #F5F2E9;
+  background: #E34B2A;
+  border-bottom: 2px solid #AD351B;
+}
+/* Gradient Theme - Green Scheme */
+.calculoid-theme-gradient.calculoid-color-scheme-green .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #F5F2E9;
+  background: #09AB36;
+  border-bottom: 2px solid #048227;
+}
+/* Gradient Theme - Dark Scheme */
+.calculoid-theme-gradient.calculoid-color-scheme-dark .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #F5F2E9;
+  background: #484848;
+  border: none;
+}
+
+/* Bordered Theme*/
+.calculoid-theme-bordered .gridster .gridster-item {
+  border-radius: 4px;
+  border: 1px solid #DADADA;
+  border-top: 3px solid #dfdfdf;
+  box-shadow: 1px 1px 3px #dfdfdf;
+}
+.calculoid-theme-bordered .gridster-desktop .calculoid-field-item .calculoid-box {
+  overflow: hidden;
+  padding:40px 15px 5px 15px;
+  transform: none;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.calculoid-theme-bordered .gridster-desktop .calculoid-field-item .calculoid-box.no-h4 {
+  padding-top: 5px;
+}
+.calculoid-theme-bordered .gridster-desktop .calculoid-field-item .calculoid-box > p, .gridster-desktop .calculoid-field-item .calculoid-box > div {
+  padding: 0;
+  width: 100%;
+}
+.calculoid-theme-bordered .gridster-desktop .calculoid-field-item .calculoid-box > p {
+  line-height: 1.2;
+  margin: 0;
+}
+.calculoid-theme-bordered .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f6f6f6;
+  margin: 0;
+  padding: 7px 20px 7px 20px;
+  overflow: hidden;
+  font-weight: normal;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom: 2px solid #DADADA;
+}
+/* Bordered Theme - Blue Scheme */
+.calculoid-theme-bordered.calculoid-color-scheme-default .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #33353f;
+}
+/* Bordered Theme - Blue Scheme */
+.calculoid-theme-bordered.calculoid-color-scheme-blue .gridster .gridster-item {
+  border-top: 3px solid #147AF9;
+}
+.calculoid-theme-bordered.calculoid-color-scheme-blue .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #147AF9;
+}
+/* Bordered Theme - Red Scheme */
+.calculoid-theme-bordered.calculoid-color-scheme-red .gridster .gridster-item {
+  border-top: 3px solid #E34B2A;
+}
+.calculoid-theme-bordered.calculoid-color-scheme-red .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #E34B2A;
+}
+/* Bordered Theme - Green Scheme */
+.calculoid-theme-bordered.calculoid-color-scheme-green .gridster .gridster-item {
+  border-top: 3px solid #09AB36;
+}
+.calculoid-theme-bordered.calculoid-color-scheme-green .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #09AB36;
+}
+/* Bordered Theme - Dark Scheme */
+.calculoid-theme-bordered.calculoid-color-scheme-dark .gridster .gridster-item {
+  border-top: 3px solid #33353f;
+}
+.calculoid-theme-bordered.calculoid-color-scheme-dark .gridster-desktop .calculoid-field-item h4.calculoid-field-title {
+  color: #33353f;
+}
+/* Dark Background Theme */
+.calculoid-theme-dark-background {
+  color: #fff;
+  box-shadow: 0 0 35px 30px #003373;
+  background: #003373;
+}
+.calculoid-theme-dark-background p,
+.calculoid-theme-dark-background h1,
+.calculoid-theme-dark-background h2,
+.calculoid-theme-dark-background h3,
+.calculoid-theme-dark-background h4,
+.calculoid-theme-dark-background h5,
+.calculoid-theme-dark-background h6 {
+  color: #fff;
+}
+.calculoid-theme-dark-background .gridster .gridster-item {
+  -webkit-box-shadow: 0 0 5px rgba(255,255,255,.8);
+  -moz-box-shadow: 0 0 5px rgba(255,255,255,.8);
+  box-shadow: 0 0 5px rgba(255,255,255,.8);
+}
+.calculoid-theme-dark-background .calculoid-field-item {
+  padding: 10px;
+}

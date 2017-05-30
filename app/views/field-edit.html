@@ -1,0 +1,12 @@
+<div class="edit-field-header text-center">
+	<h4>{{activeField.type}} field "{{activeField.name}}"</h4>
+	<a ng-click="closeFieldEditForm()" class="btn btn-success close-edit-btn">
+		<i class="fa fa-floppy-o"></i> <b>save field</b>
+	</a>
+	<div class="clearfix"></div>
+</div>
+<div class="edit-field-body" resize data-offset-top="120">
+	<form role="form">
+		<div ng-include="'views/fields/' + activeField.type + '-edit.html'"></div>
+	</form>
+</div>

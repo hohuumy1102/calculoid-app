@@ -1,0 +1,118 @@
+<div class="calculator-list-header">
+    <div class="container">
+        <h1>
+            User Manager
+        </h1>
+
+
+
+        <uib-alert ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}</uib-alert>
+
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+<div class="container user-list">
+    <div class="input-group col-xs-4 search">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" placeholder="Search" ng-model="search" ng-change="changeSearch()" class="form-control input-sm">
+    </div>
+    <table class="table table-bordered">
+    	<tr>
+    		<th class="user-avatar text-center">
+                <a href ng-click="reorder('u.avatar')">
+                    Avatar
+                    <span ng-show="orderByColumn == 'u.avatar'">
+                        <span ng-show="!reverseSort"><i class="fa fa-sort-asc"></i></span>
+                        <span ng-show="reverseSort"><i class="fa fa-sort-desc"></i></span>
+                    </span>
+                </a>
+    		</th>
+    		<th>
+                <a href ng-click="reorder('u.name')">
+                    Name
+                    <span ng-show="orderByColumn == 'u.name'">
+                        <span ng-show="!reverseSort"><i class="fa fa-sort-asc"></i></span>
+                        <span ng-show="reverseSort"><i class="fa fa-sort-desc"></i></span>
+                    </span>
+                </a>
+    		</th>
+    		<th>
+    			<a href ng-click="reorder('u.group')">
+                    Group
+                    <span ng-show="orderByColumn == 'u.group'">
+                        <span ng-show="!reverseSort"><i class="fa fa-sort-asc"></i></span>
+                        <span ng-show="reverseSort"><i class="fa fa-sort-desc"></i></span>
+                    </span>
+                </a>
+    		</th>
+    		<th>
+                <a href ng-click="reorder('u.registerDate')">
+                    Registered
+                    <span ng-show="orderByColumn == 'u.registerDate'">
+                        <span ng-show="!reverseSort"><i class="fa fa-sort-asc"></i></span>
+                        <span ng-show="reverseSort"><i class="fa fa-sort-desc"></i></span>
+                    </span>
+                </a>
+    		</th>
+    		<th>
+                <a href ng-click="reorder('u.lastvisitDate')">
+                    Last login
+                    <span ng-show="orderByColumn == 'u.lastvisitDate'">
+                        <span ng-show="!reverseSort"><i class="fa fa-sort-asc"></i></span>
+                        <span ng-show="reverseSort"><i class="fa fa-sort-desc"></i></span>
+                    </span>
+                </a>
+    		</th>
+    		<th>
+                <a href ng-click="reorder('calculators')">
+                    Calcs
+                    <span ng-show="orderByColumn == 'calculators'">
+                        <span ng-show="!reverseSort"><i class="fa fa-sort-asc"></i></span>
+                        <span ng-show="reverseSort"><i class="fa fa-sort-desc"></i></span>
+                    </span>
+                </a>
+    		</th>
+    	</tr>
+        <tr ng-repeat="user in users">
+	        <td class="text-center">
+                <div ng-if="user.avatar">
+                	<img src="{{user.avatar}}" alt="{{user.name}}" />
+                </div>
+                <div ng-if="!user.avatar">
+                    <i class="fa fa-user fa-4x text-muted"></i>
+                </div>
+            </td>
+            <td class="user-name">
+                <strong>
+                    <a href="#/profile/{{user.id}}">{{user.name}}</a>
+                </strong>
+                <br>
+                <small>
+                    {{user.email}}, id: {{user.id}}, API key: {{user.apiKey}}
+                </small>
+            </td>
+            <td>
+                {{user.groupName}}
+                <br>
+                <small ng-show="user.groupExpire !== '0000-00-00 00:00:00'">Expire: {{user.groupExpire}}</small>
+            </td>
+            <td>
+                {{user.registerDate}}
+                <br>
+                <small>
+                    by {{user.service}}
+                </small>
+            </td>
+            <td>
+                {{user.lastvisitDate}}
+            </td>
+            <td class="text-center">
+                {{user.calculators}}
+            </td>
+        </tr>
+    </table>
+    <div class="text-center"><small>total: {{pg.total}}</small></div>
+    <uib-pagination total-items="pg.total" ng-model="pg.current" items-per-page="pg.limit" max-size="9" class="pagination-sm" boundary-links="true" ng-change="onGoToPage()"></uib-pagination>
+</div>

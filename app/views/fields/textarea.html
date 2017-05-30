@@ -1,0 +1,6 @@
+<div class="text" id="field_{{field.id}}">
+    <textarea ng-model="field.value" class="form-control" ng-change="countWords(field)" ng-init="countWords(field)" rows="{{field.params.textareaHeight}}"></textarea>
+    <span class="prefix">{{field.prefix}}</span>
+    <span ng-if="field.params.showWordCount == 1" class="calculoid-word-count">{{field.result | formatNumber:calc.params.separatorThousand:calc.params.separatorDecimal}}</span>
+    <span class="postfix">{{field.postfix}}</span>
+</div>

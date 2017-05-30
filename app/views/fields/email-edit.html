@@ -1,0 +1,90 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Email details</tab-heading>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputEmails">Send results also to</label>
+                    <input type="text" ng-model="activeField.params.sendTo" class="form-control" id="inputEmails" placeholder="E-mail addresses" uib-tooltip="Separate e-mail addresses by comma">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputEmailFrom">Send from email</label>
+                    <input type="text" ng-model="activeField.params.sendFrom" class="form-control" id="inputEmailFrom" placeholder="From e-mail addresses" uib-tooltip="From this email address the email will be sent.">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputFromName">Sender name</label>
+                    <input type="text" ng-model="activeField.params.fromName" class="form-control" id="inputFromName" uib-tooltip="You can specify sender name. Email client should display this name instead of just email address.">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputEmailSubject">Subject</label>
+                    <input type="text" ng-model="activeField.params.subject" class="form-control" id="inputEmailSubject" placeholder="Result of calculation" uib-tooltip="Subject of email">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label for="inputEmailSubject">Redirect</label>
+                    <input type="text" ng-model="activeField.params.redirect" class="form-control" id="inputRedirect" placeholder="http://" uib-tooltip="User can be redirected to URL address you add to this field after successfull submission.">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="form-group">
+                    <label>Send email</label>
+                    <div>
+                        <div class="btn-group" uib-tooltip="In some cases you don't want to send confirmation email by calculoid, but with some other tool like a marketing automation. You can switch the email sending here.">
+                            <button type="button" class="btn btn-default" ng-model="activeField.params.sendEmail" uib-btn-radio="1" ng-class="{active: activeField.params.sendEmail != 0}">Yes</button>
+                            <button type="button" class="btn btn-default" ng-model="activeField.params.sendEmail" uib-btn-radio="0" ng-class="{active: activeField.params.sendEmail == 0}">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Email template</tab-heading>
+        <div class="row">
+            <div class="col-md-12">
+                <p>This text will be sent to a person who send results of calculation.</p>
+                <div text-angular ng-model="activeField.params.emailMessage" ta-toolbar="[['h2','h3','h4','pre','quote'], ['bold','italics','underline','ul','ol','redo','undo'], ['html','insertLink']]"></div>
+            </div>
+            <div class="col-md-12">
+                <h3>Available variables</h3>
+                <p>These variables will be replaced by actual data before the email will be sent.</p>
+                <div ng-include="'views/text-variables.html'"></div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+         <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="inputEmailSubject">Button text</label>
+                    <input type="text" ng-model="activeField.params.buttonText" class="form-control" id="inputButtonText" placeholder="Send Results" uib-tooltip="The text which will appear on the button">
+                </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </uib-tab>
+</uib-tabset>

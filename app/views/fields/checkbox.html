@@ -1,0 +1,10 @@
+<div class="radio" id="field_{{field.id}}">
+	<label>
+		<span class="prefix">{{field.prefix}}</span>
+		<input type="checkbox"
+			name="field_{{field.id}}"
+			ng-model="field.params.checked"
+			ng-change="checkboxChanged(field)" />
+		<span class="postfix">{{field.postfix}}</span>
+	</label>
+</div>

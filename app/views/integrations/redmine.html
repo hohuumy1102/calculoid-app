@@ -1,0 +1,98 @@
+<div class="col-md-8">
+<div class="row">
+    <div class="col-md-6">
+        <label for="inputRedmineUrl">Redmine URL</label>
+        <input type="url" ng-model="calc.params.redmineUrl" placeholder="http://" class="form-control" id="inputRedmineUrl" />
+        <small>
+            The base URL address to your Redmine installation. Has to start with http:// or https://.
+        </small>
+    </div>
+    <div class="col-md-6">
+        <label for="inputRedmineKey">Redmine API key</label>
+        <input type="text" ng-model="calc.params.redmineKey" class="form-control" id="inputRedmineKey" />
+        <small>
+            The API key of the account which will be author of the created issues. API key can be found in the Redmine Account Detail.
+        </small>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <label for="inputRedmineSubject">Subject</label>
+        <input type="text" ng-model="calc.params.redmineSubject" class="form-control" id="inputRedmineSubject" />
+        <small>
+            Subject of the issue.
+        </small>
+    </div>
+    <div class="col-md-6">
+        <label for="inputRedmineDescription">Description</label>
+        <input type="text" ng-model="calc.params.redmineDescription" class="form-control" id="inputRedmineDescription" />
+        <small>
+            Description of the issue.
+        </small>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <label for="inputRedmineProject">Project ID</label>
+        <input type="text" ng-model="calc.params.redmineProject" class="form-control" id="inputRedmineProject" />
+        <small>
+            Id of the project the issue will create in. The ID can be seen in the URL when you view the project.
+        </small>
+    </div>
+    <div class="col-md-6">
+        <label for="inputRedmineTracker">Tracker ID</label>
+        <input type="text" ng-model="calc.params.redmineTracker" class="form-control" id="inputRedmineTracker" />
+        <small>
+            Id of the tracker the issue will be created with.
+        </small>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <label for="inputRedmineStatus">Status ID</label>
+        <input type="text" ng-model="calc.params.redmineStatus" class="form-control" id="inputRedmineProject" />
+        <small>
+            Id of the status the issue will be created with.
+        </small>
+    </div>
+    <div class="col-md-6">
+        <label for="inputRedminePriority">Priority ID</label>
+        <input type="text" ng-model="calc.params.redminePriority" class="form-control" id="inputRedminePriority" />
+        <small>
+            Id of the priority the issue will be created with.
+        </small>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <label for="inputRedmineAssignedTo">Assigned to ID</label>
+        <input type="text" ng-model="calc.params.redmineAssignedTo" class="form-control" id="inputRedmineAssignedTo" />
+        <small>
+            Id of the assigned to (redmine user) the issue will be created with.
+        </small>
+    </div>
+    <div class="col-md-6">
+        <label for="inputRedmineActivity">Activity ID</label>
+        <input type="text" ng-model="calc.params.redmineActivity" class="form-control" id="inputRedmineActivity" />
+        <small>
+            Id of the activity the issue will be created with.
+        </small>
+    </div>
+</div>
+<div class="row">
+    <h3>Redmine Custom field mapping <button ng-click="loadRedmineCustomFields(calc, 'issue')" class="btn btn-default btn-xs pull-right">Load Redmine Custom Fields</button></h3>
+    <div class="col-md-6 form-group" ng-repeat="field in redmineCustomFields">
+        <label for="inputRedmineCustomField-{{field.id}}">{{field.name}}</label>
+        <input type="text" ng-model="calc.params.redmineCustomFields[field.id]" class="form-control" id="inputRedmineCustomField-{{field.id}}" />
+        <small ng-if="field.possible_values">
+            <strong>Available options:</strong>
+            <span ng-repeat="option in field.possible_values">{{option.value}}, </span>
+        </small>
+    </div>
+</div>
+</div>
+<div class="col-md-4">
+    <h3>Available variables</h3>
+    <p>These variables will be replaced by actual data before the issue will be sent to Redmine.</p>
+    <div ng-include="'views/text-variables.html'"></div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+	<h1>Report - views</h1>
+	<uib-alert ng-repeat="alerts in report.alerts" type="alert.type">{{alerts.msg}}</uib-alert>
+	<a href="#/calculator/{{calcId}}">
+	    <i class="fa fa-reply"></i> Back to Calculator
+	</a>
+	<div google-chart chart="requestChartData" class="area-chart"></div>
+	<table ng-if="report.views" class="table table-bordered table-hover">
+		<tr>
+			<th class="text-center">Origin</th>
+			<th class="text-center">Last 30 days</th>
+			<th class="text-center">Last 7 days</th>
+			<th class="text-center">Last 24 hours</th>
+		</tr>
+		<tr ng-repeat="views in report.views">
+			<td class="text-center"><a ng-href="{{views.referer}}">{{views.origin}}</a></td>
+			<td class="text-center">{{views.last30days}}</td>
+			<td class="text-center">{{views.last7days}}</td>
+			<td class="text-center">{{views.last24hours}}</td>
+		</tr>
+	</table>
+</div>

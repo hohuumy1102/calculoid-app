@@ -1,0 +1,19 @@
+<div class="more-space">
+    <span class="fa fa-times close-toolbar-content" ng-click="toolbarClose();"> </span>
+    <h3>Copy this calculator</h3>
+
+    <p>Logged in user can copy any public calculator and modify it. As an author of a calculator, you'll have access to statistics, submissions and payments of your copy.</p>
+
+    <div class="text-center">
+        <a ng-if="user.logged == 'in'" ng-click="copy(calc.id)" class="btn btn-default">
+            <i class="fa fa-files-o"></i> Copy
+        </a>
+
+        <span ng-if="calc.canEdit">(You are already author of this calc)</span>
+
+        <button ng-if="user.logged != 'in'" disabled="disabled" class="btn btn-default">
+            <i class="fa fa-files-o"></i> Copy
+        </button>
+    </div>
+
+</div>

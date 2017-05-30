@@ -1,0 +1,17 @@
+<div class="radio" id="field_{{field.id}}">
+	<ul class="list-unstyled">
+		<li ng-repeat="option in field.options" class="option option_{{option.id}}" style="width:{{100/field.params.columns}}%">
+			<label>
+				<span class="prefix">{{option.prefix}}</span>
+				<input type="radio" 
+					name="field_{{field.id}}" 
+					option="{{option.option}}"
+					data-field-id="{{field.id}}" 
+					ng-value="option.value"
+					ng-model="calc.fields[field.id].value" />
+				<span class="option_name">{{option.name}}</span>
+				<span class="postfix">{{option.postfix}}</span>
+			</label>
+		</li>
+	</ul>
+</div>

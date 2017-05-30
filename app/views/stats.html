@@ -1,0 +1,19 @@
+<div class="calculator-list-header">
+	<div class="container">
+	    <h1>
+	        Admin Statistics
+	    </h1>
+	    <ul class="nav nav-tabs">
+            <li role="presentation" ng-class="activeTab('payments')"><a ng-click="showChart('payments')">Payments</a></li>
+            <li role="presentation" ng-class="activeTab('orders')"><a ng-click="showChart('orders')">Orders</a></li>
+            <li role="presentation" ng-class="activeTab('users')"><a ng-click="showChart('users')">Registered users</a></li>
+            <li role="presentation" ng-class="activeTab('calculators')"><a ng-click="showChart('calculators')">Created calculators</a></li>
+            <li role="presentation" ng-class="activeTab('requests')"><a ng-click="showChart('requests')">Load requests</a></li>
+            <li role="presentation" ng-class="activeTab('submissions')"><a ng-click="showChart('submissions')">Submissions</a></li>
+        </ul>
+	</div>
+</div>
+<div class="container">
+	<uib-alert ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}</uib-alert>
+	<div google-chart chart="chartData[currentChart]" class="area-chart"></div>
+</div>

@@ -1,0 +1,155 @@
+<div class="container">
+    <h1>
+        Submissions
+    </h1>
+    <uib-alert ng-repeat="alert in submissions.alerts" type="alert.type">{{alert.msg}}</uib-alert>
+    <div class="pb-10 row">
+        <div class="col-xs-2">
+            <a class="btn btn-default" href="#/calculator/{{calcId}}">
+                <i class="fa fa-reply"></i> Back to Calculator
+            </a>
+        </div>
+        <div class="col-xs-3">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" placeholder="Search email" ng-model="search" ng-change="changeSearch()" class="form-control">
+            </div>
+        </div>
+        <div class="search col-xs-3">
+            <div class="input-group">
+                <span class="input-group-addon">Payment Status</span>
+                <select ng-model="paymentStatus" ng-change="changeStatus()" ng-options="status for status in statuses" class="form-control"></select>
+            </div>
+        </div>
+        <div ng-if="submissions.items.length" class="col-xs-2 pull-right">
+            <a type="button" class="btn btn-default" href="http://api.calculoid.com/submissions/{{calcId}}/export?token={{user.token}}">
+                <i class="fa fa-floppy-o"></i> Export Submissions
+            </a>
+        </div>
+    </div>
+    <uib-accordion close-others="true">
+        <uib-accordion-group ng-repeat="submission in submissions.items">
+            <uib-accordion-heading>
+                <div ng-click="loadSubmission($index, false)">
+                    <span>
+                        <i class="fa fa-calendar"></i> {{submission.date}}
+                    </span>
+                    <span ng-if="submission.email">|
+                        <i class="fa fa-envelope-o"></i> {{submission.email}}
+                    </span>
+                    <span ng-if="submission.price">|
+                        <i class="fa fa-money"></i> {{submission.price}} {{submission.currency}}
+                    </span>
+                    <span ng-if="submission.status">|
+                        <i ng-if="submission.status !== 'Completed'" class="fa fa-flag-o"></i>
+                        <i ng-if="submission.status === 'Completed'" class="fa fa-flag-checkered"></i>
+                        {{submission.status}}
+                    </span>
+                </div>
+            </uib-accordion-heading>
+
+            <uib-alert ng-repeat="alert in submission.detail.alerts" type="alert.type">{{alert.msg}}</uib-alert>
+
+            <h3 ng-if="submission.id">Submission</h3>
+            <table class="table table-bordered">
+                <tr ng-if="submission.id">
+                    <th>Submission ID</th>
+                    <td>{{submission.id}}</td>
+                </tr>
+                <tr ng-if="submission.date">
+                    <th>Submitted at</th>
+                    <td>{{submission.date}} <small>(<span am-time-ago="submission.date"></span>)</small></td>
+                </tr>
+                <tr ng-if="submission.email">
+                    <th>Submitted by</th>
+                    <td><a href="mailto:{{submission.email}}">{{submission.email}}</a></td>
+                </tr>
+                <tr ng-if="submission.detail.url">
+                    <th>Sent from</th>
+                    <td><a href="{{submission.detail.url}}" target="_blank">{{submission.detail.url}}</a></td>
+                </tr>
+                <tr ng-if="submission.detail.name">
+                    <th>Calculator</th>
+                    <td>{{submission.detail.name}}</td>
+                </tr>
+                <tr ng-if="submission.detail.comment">
+                    <th>Comment</th>
+                    <td>{{submission.detail.comment}}</td>
+                </tr>
+            </table>
+
+            <h3 ng-if="submission.detail.fields">Fields</h3>
+            <table class="table table-bordered">
+                <tr ng-if="submission.detail.fields" ng-repeat="field in submission.detail.fields">
+                    <th>{{field.name}}</th>
+                    <td>{{field.prefix}}{{field.value}}{{field.postfix}}</td>
+                </tr>
+            </table>
+
+            <h3 ng-if="submission.detail.payment">Payment</h3>
+            <table class="table table-bordered">
+                <tr ng-if="submission.detail.payment.price">
+                    <th>Price</th>
+                    <td>{{submission.detail.payment.price}} {{submission.detail.payment.currency}}</td>
+                </tr>
+                <tr ng-if="submission.detail.payment.status">
+                    <th>Status</th>
+                    <td>{{submission.detail.payment.status}}</td>
+                </tr>
+                <tr ng-if="submission.detail.payment.info">
+                    <th>Payment info</th>
+                    <td>{{submission.detail.payment.info}}</td>
+                </tr>
+                <tr ng-if="submission.detail.payment.paypalEmail">
+                    <th>PayPal email</th>
+                    <td>{{submission.detail.payment.paypalEmail}}</td>
+                </tr>
+                <tr ng-if="submission.detail.payment.paymentGate">
+                    <th>Payment Gate</th>
+                    <td>{{submission.detail.payment.paymentGate}}</td>
+                </tr>
+            </table>
+
+            <h3 ng-if="submission.detail.payment">Payment details</h3>
+            <table class="table table-bordered">
+                </tr>
+                <tr ng-repeat="(key, value) in submission.detail.payment.details" ng-if="value && key != 'refunds' && key != 'fraud_details' && key != 'metadata' && key != 'object' && key != 'source'">
+                    <th>
+                        {{key}}
+                    </th>
+                    <td ng-if="key != 'card' && key != 'source'">
+                        {{value}}
+                    </td>
+                    <td ng-if="key == 'card'">
+                        <ul>
+                            <li ng-repeat="(objectKey, objectValue) in value" ng-if="objectValue">
+                                <strong>{{objectKey}}:</strong> {{objectValue}}
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <i>{{submission.detailStatus}}</i>
+            <small>(<span am-time-ago="submission.loaded"></span>)</small>
+            <button type="button" class="btn btn-default" ng-click="loadSubmission($index, true)">
+                <i class="fa fa-refresh"></i> Update
+            </button>
+
+            <button type="button" class="btn btn-danger pull-right" ng-click="deleteSubmission($index, true)" ng-disabled="submission.deleteButtonDisabled">
+                <i class="fa fa-trash-o"></i> Delete
+                <small>{{submission.deleteStatus}}</small>
+            </button>
+
+        </uib-accordion-group>
+    </uib-accordion>
+
+    <div class="clearfix"></div>
+    <div class="text-center">
+        <uib-pagination total-items="submissions.pg.total" ng-model="submissions.pg.current" items-per-page="submissions.pg.limit" max-size="9" boundary-links="true" ng-change="onGoToPage()"></uib-pagination>
+    </div>
+    <div class="text-center text-muted">
+        <span>total: {{submissions.pg.total}}</span>
+    </div>
+
+</div>

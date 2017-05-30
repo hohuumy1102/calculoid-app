@@ -1,0 +1,35 @@
+{
+  "name": "calculoid",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-animate": "~1.4.x",
+    "angular-awesome-slider": "~2.4.x",
+    "angular-bindonce": "~0.3.x",
+    "angular-bootstrap": "~0.14.x",
+    "angular-cookies": "~1.4.x",
+    "angular-google-chart": "~0.0.9",
+    "angular-gridster": "~0.13.x",
+    "angular-loading-bar": "~0.8.0",
+    "angular-moment": "~0.10.x",
+    "angular-resource": "~1.4.x",
+    "angular-route": "~1.4.x",
+    "angular-sanitize": "~1.4.x",
+    "es5-shim": "~4.2.x",
+    "font-awesome": "~4.4.x",
+    "json3": "~3.3.x",
+    "moment": "~2.10.x",
+    "ng-tags-input": "~3.0.x",
+    "textAngular": "~1.4.x",
+    "angular-bootstrap-colorpicker": "~3.0.19",
+    "bootstrap-css-only": "~3.3.5",
+    "angular-notify": "~2.5.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.x",
+    "angular-scenario": "~1.4.x"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
+  }
+}

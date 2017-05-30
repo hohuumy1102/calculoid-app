@@ -1,0 +1,102 @@
+<div ng-if="user.logged != 'in'" ng-include="'views/404.html'"></div>
+<div ng-if="user.logged == 'in'" class="container">
+	<h1>{{profile.name}}</h1>
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label for="inputName" class="col-sm-3 control-label">Public Name</label>
+			<div class="col-sm-9">
+				<input type="text" ng-model="profile.name" class="form-control" id="inputName" placeholder="Name" ng-disabled="user.group != 6"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail" class="col-sm-3 control-label">Email</label>
+			<div class="col-sm-9">
+				<input type="text" ng-model="profile.email" class="form-control" id="inputEmail" ng-disabled="!(user.group == 6 && profile.service == 'calculoid')"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputApiKey" class="col-sm-3 control-label">ApiKey</label>
+			<div class="col-sm-9">
+				<input type="text" ng-model="profile.apiKey" class="form-control" id="inputApiKey" readonly/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label">Registration Date</label>
+			<div class="col-sm-9">
+				{{profile.registerDate}}
+				<small>(<span am-time-ago="profile.registerDate"></span>)</small>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">Membership</label>
+			<div ng-if="user.group != 6" class="col-sm-9">
+				{{profile.permissions.name}}
+			</div>
+			<div ng-if="user.group == 6" class="col-sm-9">
+				<select ng-model="profile.group" class="form-control">
+                    <option value="2">Free</option>
+                    <option value="3">Professional</option>
+                    <option value="4">E-commerce</option>
+                    <option value="5">Developer</option>
+                    <option value="7">High Traffic</option>
+                    <option value="6">Administrator</option>
+                </select>
+            </div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">Membership Expiration</label>
+			<div class="col-sm-9" ng-if="user.group != 6">
+				<div ng-if="profile.groupExpire">
+					{{profile.groupExpire}}
+					<small>(<span am-time-ago="profile.groupExpire"></span>)</small>
+				</div>
+				<div ng-if="!profile.groupExpire">
+					Never
+				</div>
+			</div>
+			<div class="col-sm-9" ng-if="user.group == 6">
+				<input type="text" ng-model="profile.groupExpire" class="form-control"/>
+			</div>
+		</div>
+		<div ng-if="user.group == 6" class="form-group">
+			<div class="col-sm-offset-3 col-sm-9">
+				<button type="button" class="btn btn-success" ng-click="saveProfile()">
+					Save changes
+				</button>
+			</div>
+		</div>
+		<div class="form-group">
+			<table class="table table-bordered text-center">
+				<tr>
+					<th class="text-center">Views Limit</th>
+					<th class="text-center">Number of private calcs</th>
+					<th class="text-center">Email field</th>
+					<th class="text-center">Payment Field</th>
+					<th class="text-center">Hide signature</th>
+					<th class="text-center">Support</th>
+				</tr>
+				<tr>
+					<td>{{profile.permissions.viewsLimit | formatNumber}} / month</td>
+					<td>{{profile.permissions.privateCalcs}}</td>
+					<td>
+						<span ng-if="profile.permissions.canSend == 1">yes</span>
+						<span ng-if="profile.permissions.canSend == 0">no</span>
+					</td>
+					<td>
+						<span ng-if="profile.permissions.canPay == 1">yes</span>
+						<span ng-if="profile.permissions.canPay == 0">no</span>
+					</td>
+					<td>
+						<span ng-if="profile.permissions.canHideSignature == 1">yes</span>
+						<span ng-if="profile.permissions.canHideSignature == 0">no</span>
+					</td>
+					<td>
+						<span ng-if="profile.permissions.canSupport == 1">yes</span>
+						<span ng-if="profile.permissions.canSupport == 0">no</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,16 @@
+<uib-tabset>
+    <uib-tab>
+        <tab-heading>Basic settings</tab-heading>
+        <div ng-include="'views/fields/edit-basic.html'"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>HTML content</tab-heading>
+        <div text-angular ng-model="activeField.value" ta-toolbar="[['h2','h3','h4','pre','quote'], ['bold','italics','underline','ul','ol','redo','undo'], ['html','insertLink']]"></div>
+    </uib-tab>
+
+    <uib-tab>
+        <tab-heading>Appearance</tab-heading>
+        <div ng-include="'views/fields/edit-appearance.html'"></div>
+    </uib-tab>
+</uib-tabset>

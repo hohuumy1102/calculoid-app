@@ -1,0 +1,128 @@
+<div ng-controller="SignInCtrl">
+  <div class="container">
+    <div ng-if="user.logged === 'in'" class="row">
+      <div>
+        <h1>Hello {{user.name}}!</h1>
+        <p>You are signed in. Take a look how to create a calculator:</p>
+        <iframe width="100%" height="500" src="//www.youtube.com/embed/ZmGSDUIyUeo?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+        <h4>Quick Links</h4>
+        <ul class="nav nav-pills">
+          <li role="presentation"><a href="#/calculators/">Browse all calculators</a></li>
+          <li role="presentation"><a href="#/my/calculators">Browse your calculators</a></li>
+          <li role="presentation"><a href="#/profile">Visit your profile</a></li>
+        </ul>
+      </div>
+    </div>
+    <div ng-if="user.logged !== 'in'">
+      <h1>Sign in to Calculoid</h1>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Register a New Calculoid Account</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-12">
+                <uib-alert ng-repeat="alert in alerts.registration">{{alert.msg}}</uib-alert>
+              </div>
+              <form name="regform" class="css-form" novalidate>
+                <div class="col-md-12 form-group">
+                  <label for="register-name">First & Last Name</label>
+                  <input type="text" ng-model="registerUser.name" class="form-control" id="register-name" placeholder="First Name & Last Name" name="regName" required />
+                </div>
+                <div class=" col-md-12 form-group">
+                  <label for="register-email">Email</label>
+                  <input type="email" ng-model="registerUser.email" class="form-control" id="register-email" placeholder="Email" name="regEmail" required />
+                </div>
+                <div class="col-md-12 form-group">
+                  <label for="register-password">Password</label>
+                  <input type="password" ng-model="registerUser.password" class="form-control" id="register-password" placeholder="Password" name="regPassword" required />
+                </div>
+                <div class="col-md-12 form-group">
+                  <label for="register-password2">Retype password</label>
+                  <input type="password" ng-model="registerUser.password2" class="form-control" id="register-password2" placeholder="Retype password" name="regPassword2" required />
+                </div>
+                <div class="col-md-12 form-group" uib-tooltip-placement="left" uib-tooltip="Fill in all registration fields to be able to register.">
+                  <button class="btn btn-primary" ng-click="register()" ng-disabled="(regform.$invalid)">
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Or use your Google account to sign in</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-12" ng-app="directive.g+signin">
+                <google-plus-signin clientid="807258428496-0mg65aok8dn9ja3aablc280bm4pfcrt3.apps.googleusercontent.com"></google-plus-signin>
+              </div>
+            </div>
+          </div>
+          <div ng-if="showResetForm !== true">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Log-in to existing account</h3>
+              </div>
+              <div class="panel-body">
+                <div class="col-md-12">
+                  <uib-alert ng-repeat="alert in alerts.login" type="alert.type">{{alert.msg}}</uib-alert>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="text" ng-model="loginUser.email" class="form-control" id="login-email" placeholder="Email">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" ng-model="loginUser.password" class="form-control" id="login-password" placeholder="Password">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <button class="btn btn-info" ng-click="authenticate('calculoid')">
+                      <i class="fa fa-unlock-alt"></i> Log-in
+                    </button>
+                    <button ng-click="showReset(true)" class="btn btn-link">
+                      <i class="fa fa-medkit"></i> Reset password
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="showResetForm === true">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Reset your password</h3>
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <button ng-click="showReset(false)" class="btn">
+                    <i class="fa fa-reply"></i> Back to login
+                  </button>
+                </div>
+                <p>Fill in the email address you want to reset password. Calculoid will send secret link which allowes you to create new password.</p>
+                <div class="form-group">
+                  <label for="login-email">Email</label>
+                  <input type="text" ng-model="loginUser.email" class="form-control" id="login-email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <uib-alert ng-repeat="alert in alerts.reset" type="alert.type">{{alert.msg}}</uib-alert>
+                  <button class="btn btn-primary" ng-click="sendReset()">
+                    <i class="fa fa-medkit"></i> Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

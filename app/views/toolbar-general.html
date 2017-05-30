@@ -1,0 +1,49 @@
+
+<ul ng-style="{'width':widthNav}" class="nav navbar-nav" ng-mouseleave="mouseLeaveThing()" ng-mouseover="mouseOverThing()">
+    <li ng-class="activeTab('details')">
+        <a ng-click="loadToolbarTab('details')">
+            <i class="fa fa-info"></i> <span ng-style="{'display':displayLabel}" class="label-nav">Details</span>
+        </a>
+    </li>
+    <li ng-class="activeTab('embed')">
+        <a ng-click="loadToolbarTab('embed')">
+            <i class="fa fa-sign-in"></i> <span ng-style="{'display':displayLabel}" class="label-nav">Embed</span>
+        </a>
+    </li>
+    <li ng-class="activeTab('copy')">
+        <a ng-click="loadToolbarTab('copy')">
+            <i class="fa fa-files-o"></i> <span ng-style="{'display':displayLabel}" class="label-nav">Copy</span>
+        </a>
+    </li>
+    <li ng-if="calc.canEdit" ng-class="activeTab('add-field')">
+        <a ng-click="loadToolbarTab('add-field')">
+            <i class="fa fa-plus"></i> <span ng-style="{'display':displayLabel}" class="label-nav">Add Field</span>
+        </a>
+    </li>
+    <li ng-if="hasFields() && calc.canEdit" ng-class="activeTab('edit-field')">
+        <a ng-click="loadToolbarTab('edit-field')">
+            <i class="fa fa-pencil"></i> <span ng-style="{'display':displayLabel}" class="label-nav">Edit Field</span>
+        </a>
+    </li>
+    <li ng-if="calc.canEdit" ng-class="activeTab('edit-calc')">
+        <a ng-click="loadToolbarTab('edit-calc')">
+            <i class="fa fa-cog"></i> <span ng-style="{'display':displayLabel}" class="label-nav">Configure Calc</span>
+        </a>
+    </li>
+    <li ng-if="calc.canEdit" ng-class="activeTab('integrations')">
+        <a ng-click="loadToolbarTab('integrations')">
+            <i class="fa fa-rocket"></i> <span ng-style="{'display':displayLabel}" class="label-nav">Integrations</span>
+        </a>
+    </li>
+</ul>
+<div class="clearfix"></div>
+<button ng-if="calc.canEdit" type="button" class="btn btn-primary save" ng-click="saveCalc();toolbarClose();">
+    <i class="fa fa-floppy-o"></i> <span ng-style="{'display':displayLabel}" class="label-nav"> {{saveStatus}}</span>
+</button>
+
+<div class="clearfix shadow"></div>
+
+<div class="col-md-12 toolbar-content" ng-style="{'display':displayToolbarContent}" ng-include="displayToolbarTabDetails()" id="{{toolbar.tab}}">
+    
+
+</div>

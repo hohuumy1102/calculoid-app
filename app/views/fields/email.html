@@ -1,0 +1,12 @@
+<div class="field-email" id="field_{{field.id}}">
+	<uib-alert ng-repeat="alert in resultAlerts" type="alert.type">{{alert.msg}}</uib-alert>
+	<span class="prefix">{{field.prefix}}</span>
+	<input type="text" ng-model="field.value" class="form-control" id="inputValue" placeholder="Email address" />
+	<div class="text-center pt-10">
+		<button type="button" class="btn btn-primary" ng-click="saveResult(field)">
+			<span ng-if="!field.params.buttonText">Send results</span>
+			<span ng-if="field.params.buttonText">{{field.params.buttonText}}</span>
+		</button>
+	</div>
+	<span class="postfix">{{field.postfix}}</span>
+</div>
