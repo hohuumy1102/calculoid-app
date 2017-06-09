@@ -5,7 +5,7 @@ calculoidServices.factory('Calc', ['$resource', '$routeParams', '$q', function($
 	var list = $resource(url+'calculators/', {tag:'@tag', search:'@search', language:'@language', page:'@page'},
 		{query: {method:'GET'}});
 	var item = $resource(url+'calculator/:task/:slug',
-		{task:'@task', token:'@token', slug:'@slug', calculator:'@calculator', field:'@field'},
+		{task:'@task', token:'@token', slug:'@slug',  field:'@field'},
 		{query: {method:'GET'}, save: {method: 'POST'},
 		isArray: true});
 	var option = $resource(url+'option/:task/:id', {task:'@task', id:'@id', fieldId:'@fieldId', token:'@token'});
